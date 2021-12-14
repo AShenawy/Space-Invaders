@@ -28,6 +28,8 @@ public class EnemyBehaviour : MonoBehaviour
 		//  destroy both this game object and the projectile
         if (otherCollider.tag == "Projectile")
         {
+            GameObject.Find("UI").GetComponent<Score>().AddKill();
+
             audio.PlayOneShot(destroySFX);
             Destroy(gameObject);
 			
