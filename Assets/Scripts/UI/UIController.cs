@@ -42,12 +42,6 @@ public class UIController : MonoBehaviour
         //IsGameScreenOn();//
         //LevelUp();//
 
-
-        /* When Level up, randomly switch BGM
-        backGroundMusic = GameObject.Find("GameBackgroundMusic");
-        backGroundMusic.GetComponent<BackGroundMusicManager>().BGMSelecter();
-        */
-
     }
 
     public void Update()
@@ -142,6 +136,9 @@ public class UIController : MonoBehaviour
 
             TipsToPlay();//
 
+            backGroundMusic = GameObject.Find("GameBackgroundMusic");//
+            backGroundMusic.GetComponent<BackGroundMusicManager>().BGMSelecter();//
+
             //isStartingNextLevel = true;//
 
             //timeLimit -= (timePassed - timeLimit);//
@@ -167,7 +164,8 @@ public class UIController : MonoBehaviour
             "..wait..take it easy..",
             "~(^._.)",
             "wanna live a life like..",
-            "=^. .^="
+            "=^. .^=",
+            "=^. .^=    =^. .^="
         };
 
         if (level  <= tipsToPlayText.Length) 
