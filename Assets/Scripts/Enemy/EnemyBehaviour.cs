@@ -17,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     //Graphics
     public Sprite damageSprite;
+    public GameObject popUpScorePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +31,21 @@ public class EnemyBehaviour : MonoBehaviour
         
     }
 
-	// A function automatically triggerred when another game object with Collider2D component
-	// Enters the Collider2D boundaries on this game object
+
+    //This is responsible for displaying the animated score after the enemy object is being destroyed
+    public void ShowScore()
+    {
+        GameObject clone = Instantiate(popUpScorePrefab, transform.position, Quaternion.identity);
+        //To ensure the destruction of the game object after 2 seconds
+        Destroy(clone, 2.0f);
+    }
+    // A function automatically triggerred when another game object with Collider2D component
+    // Enters the Collider2D boundaries on this game object
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
 		// Check the tag on the other game object. If it's the projectile's tag,
 		//  destroy both this game object and the projectile
+        // You need to hit the alien twice with the projectile to destory it
         if (otherCollider.tag == "Projectile")
         {
             //Decrease the health of the enemy
@@ -54,6 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
                 //Play the destruction SFX
                 GameController.scoreValue++;
                 audio.PlayOneShot(destroySFX);
+                ShowScore();
                 Destroy(gameObject);
                
             }
@@ -61,12 +72,14 @@ public class EnemyBehaviour : MonoBehaviour
             // Get the game object, as a whole, that's attached to the Collider2D component
             Destroy(otherCollider.gameObject);
         }
+        //Rockets causes directed damage to the aliens
         else if (otherCollider.tag == "Rocket")
         {
             numberOfHits = 0;
             //Play the destruction SFX
             GameController.scoreValue++;
             audio.PlayOneShot(destroySFX);
+            ShowScore();
             Destroy(gameObject);
 
             // Get the game object, as a whole, that's attached to the Collider2D component

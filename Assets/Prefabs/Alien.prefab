@@ -130,6 +130,7 @@ MonoBehaviour:
   damageSFX: {fileID: 8300000, guid: a839739ca2bba8b40bb24b71a10f17a2, type: 3}
   destroySFX: {fileID: 8300000, guid: 15d2cbf850dda87418a8a43028ddda35, type: 3}
   damageSprite: {fileID: 0}
+  popUpScorePrefab: {fileID: 1081173933803924636, guid: 09be19daedc3c424eaa1fc40e4bb41de, type: 3}
 --- !u!50 &-6034247565746261748
 Rigidbody2D:
   serializedVersion: 4

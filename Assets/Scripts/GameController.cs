@@ -10,10 +10,13 @@ public class GameController : MonoBehaviour
     public static int scoreValue;
     public static int alienCount;
     public static int playerHealth;
+   // public static Transform popUpScorePrefab;
+
 
     public Text score;
     public Text displayResult;
     public GameObject restartButton;
+    
 
     private bool gameOver;
 
@@ -26,6 +29,8 @@ public class GameController : MonoBehaviour
         scoreValue = 0;
         gameOver = false;
         restartButton.SetActive(false);
+
+      
     }
 
     // Update is called once per frame
