@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // This script controls the behaviour of each single Alien enemy
 public class EnemyBehaviour : MonoBehaviour
@@ -17,20 +18,37 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Invoke("DestroyEnemy", 5f);
     }
 
-	// A function automatically triggerred when another game object with Collider2D component
-	// Enters the Collider2D boundaries on this game object
+    void DestroyEnemy()
+    {
+        // Destroy the game object this script is on (the projectile game object)
+        Destroy(gameObject);
+
+    }
+
+    // A function automatically triggerred when another game object with Collider2D component
+    // Enters the Collider2D boundaries on this game object
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-		// Check the tag on the other game object. If it's the projectile's tag,
-		//  destroy both this game object and the projectile
+        if (otherCollider.tag == "Player")
+        {
+            // if player collided set playerprefs for gameover scene
+            PlayerPrefs.SetString("loseMessage", "YOUR SHIP WAS DESTROYED");
+
+            // load gameover scene
+            SceneManager.LoadScene("GameOver");
+        }
+
+            // Check the tag on the other game object. If it's the projectile's tag,
+            //  destroy both this game object and the projectile
         if (otherCollider.tag == "Projectile")
         {
-            GameObject.Find("UI").GetComponent<Score>().AddKill();
+            // play explosion sound
+            GameObject.Find("ExplosionSound").GetComponent<ExplosionSound>().PlayExplosion();
 
-            audio.PlayOneShot(destroySFX);
+            // destroy object
             Destroy(gameObject);
 			
 			// Get the game object, as a whole, that's attached to the Collider2D component
