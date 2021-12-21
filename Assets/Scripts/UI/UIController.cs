@@ -7,15 +7,14 @@ public class UIController : MonoBehaviour
 {
     public SFXManager sfxManager;
     public GameObject backGroundMusic;
+    
 
-    //public int killCount = 0;//
     public int totalDefeatedEnemy = 0;
     public float timePassed = 0f;
     public float timeStored = 0f;
     public float timeLimit = 0f;
     public int level = 1;
-    //public bool isStartingNextLevel = false;//
-    //public bool isPlayAgain = false;//
+    public float survivedSec = 0f;
     public bool isGameScreenOn = false;
 
 
@@ -23,29 +22,27 @@ public class UIController : MonoBehaviour
 
     [SerializeField] GameObject gameScreen;
 
-    [SerializeField] GameObject gameTextCanvas;
+    [SerializeField] GameObject gameTextCanvas;//
     [SerializeField] Text timeLimitText;
+    [SerializeField] Text tipsText;
 
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] Text defeatedEnemiesTextInGameOverCanvas;
-    [SerializeField] Text LevelTextInGameOverCanvas;
+    [SerializeField] Text survivedTextInGameOverCanvas;
+    [SerializeField] Text levelTextInGameOverCanvas;
 
-    
+
     [SerializeField] GameObject enemyGroup;
     [SerializeField] GameObject enemy2Group;
     [SerializeField] GameObject enemy3Group;
 
-    //[SerializeField] GameObject enemies;//
-    //[SerializeField] Text levelText;//
-    //[SerializeField] Text defeatedEnemiesText;//
-
-
 
     public void Start()
     {
-        //LevelUp();
+        //IsGameScreenOn();//
+        //LevelUp();//
 
-        
+
         /* When Level up, randomly switch BGM
         backGroundMusic = GameObject.Find("GameBackgroundMusic");
         backGroundMusic.GetComponent<BackGroundMusicManager>().BGMSelecter();
@@ -63,17 +60,12 @@ public class UIController : MonoBehaviour
 
         TimeLimitCountDown();//
 
+        GameOver();
+
+
         //Test fpr Game Over Screen//
-        if (Input.GetKeyDown(KeyCode.T)) 
-        {
-            //isPlayAgain = true;//
+        //if (Input.GetKeyDown(KeyCode.T))//
 
-            ResetEnemyGroups();//RSI<<<<-----how to reset Timelimit result in game screen??
-
-            ShowGameOverCanvas();//
-
-            InitializeRecord();//
-        }
     }
 
 
@@ -117,7 +109,7 @@ public class UIController : MonoBehaviour
             timeLimit -= Time.deltaTime;
             Debug.Log(timeLimit);//
 
-            timeLimitText.text = "TimeLimit: " + timeLimit.ToString("f2");
+            timeLimitText.text = timeLimit.ToString("f2");
         }
     }
 
@@ -139,6 +131,7 @@ public class UIController : MonoBehaviour
             // Set seconds for contdown which is rounded up previous cleartime
             //timeLimit = Mathf.Ceil(timePassed);//
 
+
             timeLimit = timePassed - timeStored;
             timeStored += timePassed - timeStored;
 
@@ -146,6 +139,8 @@ public class UIController : MonoBehaviour
 
             // Level+1
             LevelUp();
+
+            TipsToPlay();//
 
             //isStartingNextLevel = true;//
 
@@ -160,47 +155,42 @@ public class UIController : MonoBehaviour
         }
     }
 
-    
-    public void GameSceneCanvas()
+    public void TipsToPlay()
     {
-        gameTextCanvas.SetActive(true);
-        /* Not use but just for check
-        levelText.text = "Level : " + level.ToString();
-        defeatedEnemiesText.text = "Enemies defeated : " + totalDefeatedEnemy.ToString();
-        */
-
-        
-        if (level < 2)
+        string[] tipsToPlayText = new string[]
         {
-            timeLimitText.text = "" ;//
+            "SPACE KEY to SHOOT.. \n RIGHT / LEFT ARROW KEYS to MOVE..",
+            "count down starts..",
+            "V(-.o)V",
+            "beat yourself..",
+            ":)",
+            "..wait..take it easy..",
+            "~(^._.)",
+            "wanna live a life like..",
+            "=^. .^="
+        };
+
+        if (level  <= tipsToPlayText.Length) 
+        {
+            tipsText.text = tipsToPlayText[level - 1];
         }
-        else 
-        {
-            if (startGameCanvas.activeSelf)
-            {
-                timeLimitText.text = "" ;//
-            }
-            else 
-            {
-                timeLimitText.text = "TimeLimit : " + timeLimit.ToString();//<<<<<---------------------How to Manage this??
-            }
-        }
-
-
-        /*
-        if ((level >= 2) && (!startGameCanvas.activeSelf)) //
-        {
-            timeLimitText.text = "TimeLimit : " + timeLimit.ToString();//
-        }
-        */
-
-        /*
-        if (isStartingNextLevel == true) 
-        {
-            
-        }*/
     }
 
+    public void GameOver()
+    {
+        if (timeLimit < 0)
+        {
+            //isPlayAgain = true;//
+
+            survivedSec = timePassed;//
+
+            ResetEnemyGroups();//
+
+            ShowGameOverCanvas();//
+
+            InitializeRecord();//
+        }
+    }
 
     public void ShowGameOverCanvas() 
     {
@@ -209,7 +199,8 @@ public class UIController : MonoBehaviour
         gameScreen.SetActive(false);
 
         defeatedEnemiesTextInGameOverCanvas.text = totalDefeatedEnemy.ToString();
-        LevelTextInGameOverCanvas.text = level.ToString();
+        survivedTextInGameOverCanvas.text = survivedSec.ToString("f2");
+        levelTextInGameOverCanvas.text = level.ToString();
 
         //InitializeRecord();//
 
@@ -238,7 +229,8 @@ public class UIController : MonoBehaviour
         level = 1;
         //isStartingNextLevel = false;//
 
-        //timeLimitText.text = null;
+        timeLimitText.text = "";//
+        tipsText.text = "";//
         //defeatedEnemiesTextInGameOverCanvas.text = null;
         //LevelTextInGameOverCanvas.text = null;
 
@@ -308,8 +300,5 @@ public class UIController : MonoBehaviour
                 enemies3Array[k].SetActive(true);
             }
         }
-
     }
-
-
 }
