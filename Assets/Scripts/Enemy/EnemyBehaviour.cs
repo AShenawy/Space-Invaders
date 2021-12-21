@@ -5,19 +5,19 @@ using UnityEngine;
 // This script controls the behaviour of each single Alien enemy
 public class EnemyBehaviour : MonoBehaviour
 {
-    public SFXManager sfxManager;
-    public GameObject uiController;
+    public SFXManager sfxManager;//
+    public GameObject uiController;//
 
     // Start is called before the first frame update
     void Start()
     {
-        uiController = GameObject.Find("UIController");
+        //uiController = GameObject.Find("UIController");//
     }
 
     // Update is called once per frame
     void Update()
     {
-        uiController.GetComponent<UIController>().ClearTime();
+        //uiController.GetComponent<UIController>().Timer();//
     }
 
 	// A function automatically triggerred when another game object with Collider2D component
@@ -28,8 +28,9 @@ public class EnemyBehaviour : MonoBehaviour
 		//  destroy both this game object and the projectile
         if (otherCollider.tag == "Projectile")
         {
-
-            //Destroy(gameObject);
+            /*
+             Instead of //Destroy(gameObject);//, use "SetActive()"
+             */
             gameObject.SetActive(false);
 			
 			// Get the game object, as a whole, that's attached to the Collider2D component
@@ -39,13 +40,11 @@ public class EnemyBehaviour : MonoBehaviour
             sfxManager.PlaySFX("Explosion");
 
             //Counting number of defeated enemies
-            uiController.GetComponent<UIController>().KillCount();
+            uiController = GameObject.Find("UIController");
+            uiController.GetComponent<UIController>().CountUpEnemyDefeated();
 
-            // In case of moving to the next level
+            // In case of moving to the next level//
             //uiController.GetComponent<UIController>().SetForNextLevel();//
-
-
-
         }
     }
 

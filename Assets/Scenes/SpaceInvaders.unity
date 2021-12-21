@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 591, y: -117}
-  m_SizeDelta: {x: 400.4234, y: 137.5992}
+  m_SizeDelta: {x: 400.42334, y: 137.59918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76398568
 MonoBehaviour:
@@ -682,12 +682,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxManager: {fileID: 1842958573}
   backGroundMusic: {fileID: 113438788}
-  killCount: 0
   totalDefeatedEnemy: 0
   timePassed: 0
+  timeStored: 0
   timeLimit: 0
   level: 0
-  isStartingNextLevel: 0
+  isGameScreenOn: 0
   startGameCanvas: {fileID: 503748357}
   gameScreen: {fileID: 231473042}
   gameTextCanvas: {fileID: 723045477}
@@ -1107,7 +1107,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -318, y: 142}
-  m_SizeDelta: {x: 960.7212, y: 237.8379}
+  m_SizeDelta: {x: 960.7212, y: 237.83789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375860799
 MonoBehaviour:
@@ -1458,7 +1458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 421, y: -61.7}
+  m_AnchoredPosition: {x: -698, y: -73}
   m_SizeDelta: {x: 417.22144, y: 41.9722}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &483198564
@@ -2196,8 +2196,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723045477}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 61.035866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1597217570}
@@ -2208,7 +2208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -821.88477, y: -485.56702}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &723045479
@@ -3427,7 +3427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -406, y: -61}
+  m_AnchoredPosition: {x: -813, y: -30}
   m_SizeDelta: {x: 178.73914, y: 41.9722}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1597217571
@@ -4082,12 +4082,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxManager: {fileID: 0}
   backGroundMusic: {fileID: 0}
-  killCount: 0
   totalDefeatedEnemy: 0
   timePassed: 0
+  timeStored: 0
   timeLimit: 0
   level: 1
-  isStartingNextLevel: 0
+  isGameScreenOn: 0
   startGameCanvas: {fileID: 0}
   gameScreen: {fileID: 0}
   gameTextCanvas: {fileID: 0}

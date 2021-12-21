@@ -8,12 +8,16 @@ public class UIController : MonoBehaviour
     public SFXManager sfxManager;
     public GameObject backGroundMusic;
 
-    public int killCount = 0;
+    //public int killCount = 0;//
     public int totalDefeatedEnemy = 0;
     public float timePassed = 0f;
+    public float timeStored = 0f;
     public float timeLimit = 0f;
     public int level = 1;
-    public bool isStartingNextLevel = false;
+    //public bool isStartingNextLevel = false;//
+    //public bool isPlayAgain = false;//
+    public bool isGameScreenOn = false;
+
 
     [SerializeField] GameObject startGameCanvas;
 
@@ -31,9 +35,9 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject enemy2Group;
     [SerializeField] GameObject enemy3Group;
 
-    //[SerializeField] GameObject enemies;
-    //[SerializeField] Text levelText;
-    //[SerializeField] Text defeatedEnemiesText;
+    //[SerializeField] GameObject enemies;//
+    //[SerializeField] Text levelText;//
+    //[SerializeField] Text defeatedEnemiesText;//
 
 
 
@@ -51,11 +55,37 @@ public class UIController : MonoBehaviour
 
     public void Update()
     {
+        IsGameScreenOn();//
+
         SetForNextLevel();//
 
+        Timer();//
+
+        TimeLimitCountDown();//
+
+        //Test fpr Game Over Screen//
         if (Input.GetKeyDown(KeyCode.T)) 
         {
-            ShowGameOverCanvas();
+            //isPlayAgain = true;//
+
+            ResetEnemyGroups();//RSI<<<<-----how to reset Timelimit result in game screen??
+
+            ShowGameOverCanvas();//
+
+            InitializeRecord();//
+        }
+    }
+
+
+    public void IsGameScreenOn()
+    {
+        if (gameScreen.activeSelf)
+        {
+            isGameScreenOn = true;
+        }
+        else
+        {
+            isGameScreenOn = false;
         }
     }
 
@@ -64,15 +94,31 @@ public class UIController : MonoBehaviour
         level++;
     }
 
-    public void KillCount()
+    public void CountUpEnemyDefeated()
     {
-        killCount++;
-        totalDefeatedEnemy++;
+        //killCount++;
+        totalDefeatedEnemy++;// = killCount;
     }
 
-    public void ClearTime()
+    public void Timer()
     {
-        timePassed = Time.time;
+        if (isGameScreenOn == true) 
+        {
+            //timePassed = Time.time;
+            timePassed += Time.deltaTime;
+            //Debug.Log(timePassed);//
+        }
+    }
+
+    public void TimeLimitCountDown() 
+    {
+        if ((isGameScreenOn == true) && (level >= 2)) 
+        {
+            timeLimit -= Time.deltaTime;
+            Debug.Log(timeLimit);//
+
+            timeLimitText.text = "TimeLimit: " + timeLimit.ToString("f2");
+        }
     }
 
     /*
@@ -86,22 +132,26 @@ public class UIController : MonoBehaviour
    
     */
 
-
     public void SetForNextLevel()
     {
-        if ((killCount >= (27 * level)) && (timeLimit >= 0))
+        if ((totalDefeatedEnemy >= (27 * level)) && (timeLimit >= 0))
         {
             // Set seconds for contdown which is rounded up previous cleartime
-            timeLimit = Mathf.Ceil(timePassed);
+            //timeLimit = Mathf.Ceil(timePassed);//
+
+            timeLimit = timePassed - timeStored;
+            timeStored += timePassed - timeStored;
+
+            //TimeLimitCountDown();//
 
             // Level+1
             LevelUp();
 
-            isStartingNextLevel = true;
+            //isStartingNextLevel = true;//
 
             //timeLimit -= (timePassed - timeLimit);//
 
-            GameSceneCanvas();
+            //GameSceneCanvas();//
 
             //timePassed = 0 ;//
 
@@ -110,6 +160,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    
     public void GameSceneCanvas()
     {
         gameTextCanvas.SetActive(true);
@@ -117,7 +168,31 @@ public class UIController : MonoBehaviour
         levelText.text = "Level : " + level.ToString();
         defeatedEnemiesText.text = "Enemies defeated : " + totalDefeatedEnemy.ToString();
         */
-        timeLimitText.text = "TimeLimit : " + timeLimit.ToString();
+
+        
+        if (level < 2)
+        {
+            timeLimitText.text = "" ;//
+        }
+        else 
+        {
+            if (startGameCanvas.activeSelf)
+            {
+                timeLimitText.text = "" ;//
+            }
+            else 
+            {
+                timeLimitText.text = "TimeLimit : " + timeLimit.ToString();//<<<<<---------------------How to Manage this??
+            }
+        }
+
+
+        /*
+        if ((level >= 2) && (!startGameCanvas.activeSelf)) //
+        {
+            timeLimitText.text = "TimeLimit : " + timeLimit.ToString();//
+        }
+        */
 
         /*
         if (isStartingNextLevel == true) 
@@ -125,6 +200,7 @@ public class UIController : MonoBehaviour
             
         }*/
     }
+
 
     public void ShowGameOverCanvas() 
     {
@@ -135,9 +211,9 @@ public class UIController : MonoBehaviour
         defeatedEnemiesTextInGameOverCanvas.text = totalDefeatedEnemy.ToString();
         LevelTextInGameOverCanvas.text = level.ToString();
 
-        InitializeRecord();//
+        //InitializeRecord();//
 
-        ResetEnemyGroups();//
+        //ResetEnemyGroups();//
 
         /*if (timeLimit < 0)
         {
@@ -154,12 +230,13 @@ public class UIController : MonoBehaviour
 
     public void InitializeRecord() 
     {
-        killCount = 0;
+        //killCount = 0;
         totalDefeatedEnemy = 0;
         timePassed = 0f;
+        timeStored = 0f;
         timeLimit = 0f;
         level = 1;
-        isStartingNextLevel = false;
+        //isStartingNextLevel = false;//
 
         //timeLimitText.text = null;
         //defeatedEnemiesTextInGameOverCanvas.text = null;
@@ -191,7 +268,8 @@ public class UIController : MonoBehaviour
     {
         // Get EnemyGroup setActive
         enemyGroup = GameObject.Find("EnemyGroup");
-        GameObject[] enemiesArray = enemyGroup.GetComponent<EnemyController>().enemies;//
+        GameObject[] enemies = enemyGroup.GetComponent<EnemyController>().enemies;
+        GameObject[] enemiesArray = enemies;//
 
         for (int i = 0; i < enemiesArray.Length; i++)
         {
@@ -217,7 +295,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        // Get Enemy3Group setActive
+        // Get Enemy3Group setActive//
         enemy3Group = GameObject.Find("Enemy3Group");
         GameObject[] enemies3Array = enemy3Group.GetComponent<EnemyController>().enemies;
 
