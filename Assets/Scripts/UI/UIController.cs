@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /*
  *(Yoshio)
  *This script was created to set rules of the game and control UIs.
@@ -42,7 +41,7 @@ public class UIController : MonoBehaviour
 
     string[] tipsToPlayText = new string[]
         {
-            "SPACE KEY to SHOOT.. \n RIGHT / LEFT ARROW KEYS to MOVE..",
+            "SPACE KEY to SHOOT..\nRIGHT / LEFT ARROW KEYS to MOVE..",
             "count down starts..",
             "V(-.o)V",
             "beat yourself..",
@@ -51,7 +50,7 @@ public class UIController : MonoBehaviour
             "~(^._.)",
             "wanna live a life like..",
             "=^. .^=",
-            "=^. .^=    =^. .^="
+            "=^. .^=\n=^. .^="
         };
 
     public void Update()
@@ -247,7 +246,7 @@ public class UIController : MonoBehaviour
         if ((isGameScreenOn == true) && (level >= 2))
         {
             timeLimit -= Time.deltaTime;
-            Debug.Log(timeLimit);
+            //Debug.Log(timeLimit);
 
             timeLimitText.text = timeLimit.ToString("f2");
         }
@@ -303,7 +302,7 @@ public class UIController : MonoBehaviour
         isGameScreenOn = false;
 
         timeLimitText.text = "";
-        tipsText.text = "";
+        tipsText.text = tipsToPlayText[level - 1];
     }
 
 }
