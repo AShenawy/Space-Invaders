@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 287556977}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: Play
+        m_MethodName: MoveToGameScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -680,18 +680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da6cb5f9a743ba4a8cb8e1a0019de6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxManager: {fileID: 1842958573}
-  backGroundMusic: {fileID: 113438788}
-  totalDefeatedEnemy: 0
-  timePassed: 0
-  timeStored: 0
-  timeLimit: 0
-  level: 0
-  survivedSec: 0
-  isGameScreenOn: 0
   startGameCanvas: {fileID: 503748357}
   gameScreen: {fileID: 231473042}
-  gameTextCanvas: {fileID: 723045477}
   timeLimitText: {fileID: 986455736}
   tipsText: {fileID: 1009243502}
   gameOverCanvas: {fileID: 520318318}
@@ -701,6 +691,15 @@ MonoBehaviour:
   enemyGroup: {fileID: 1192935234}
   enemy2Group: {fileID: 1650736478}
   enemy3Group: {fileID: 1711413545}
+  sfxManager: {fileID: 1842958573}
+  backGroundMusic: {fileID: 113438788}
+  totalDefeatedEnemy: 0
+  timePassed: 0
+  timeStored: 0
+  timeLimit: 0
+  level: 0
+  survivedSec: 0
+  isGameScreenOn: 0
 --- !u!1001 &307577663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4226,7 +4225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 287556977}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ToTitle
+        m_MethodName: MoveToTitleCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4286,18 +4285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da6cb5f9a743ba4a8cb8e1a0019de6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxManager: {fileID: 0}
-  backGroundMusic: {fileID: 0}
-  totalDefeatedEnemy: 0
-  timePassed: 0
-  timeStored: 0
-  timeLimit: 0
-  level: 1
-  survivedSec: 0
-  isGameScreenOn: 0
   startGameCanvas: {fileID: 0}
   gameScreen: {fileID: 0}
-  gameTextCanvas: {fileID: 0}
   timeLimitText: {fileID: 0}
   tipsText: {fileID: 0}
   gameOverCanvas: {fileID: 0}
@@ -4307,6 +4296,15 @@ MonoBehaviour:
   enemyGroup: {fileID: 0}
   enemy2Group: {fileID: 0}
   enemy3Group: {fileID: 0}
+  sfxManager: {fileID: 0}
+  backGroundMusic: {fileID: 0}
+  totalDefeatedEnemy: 0
+  timePassed: 0
+  timeStored: 0
+  timeLimit: 0
+  level: 1
+  survivedSec: 0
+  isGameScreenOn: 0
 --- !u!1 &1842958571
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,9 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        //Added Shoot SFX
+        /*
+         *(Yoshio)Added Shoot SFX
+         */
         sfxManager.PlaySFX("Shoot");
 
         // Create an instance of the GameObject referenced by the projectilePrefab variable

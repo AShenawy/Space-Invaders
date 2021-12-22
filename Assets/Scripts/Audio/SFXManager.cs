@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ *(Yoshio) This script was created to play some sound effects.
+ */
 public class SFXManager : MonoBehaviour
 {
     public AudioSource audioSource;
