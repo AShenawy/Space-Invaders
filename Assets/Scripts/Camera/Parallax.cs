@@ -19,19 +19,18 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // how far we moved relatively to the camera 
+        // how far we moved relative to the camera
         float temp = (came.transform.position.x * (1 - parallaxEffect));
 
-        // how far we moved from start point
+        // distance by which we need to move the layer
         float distance = (came.transform.position.x * parallaxEffect);
 
         // move
         transform.position = new Vector3(starpos + distance, transform.position.y, transform.position.z);
 
-        // if we are far from starting position + lenght then we add lenght to starting position
+        //starting position of the layer shall be adjusted each time the camera’s position relative to that layer’s parallax shift is greater or less than current startpos width
         if (temp > starpos + lenght) starpos += lenght;
 
-        // if we are not far from starting position + lenght then we add lenght from starting position
         else if (temp < starpos - lenght) starpos -= lenght;
     }
 }

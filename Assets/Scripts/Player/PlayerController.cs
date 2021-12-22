@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private float moveSpeed = 1f;
-
     private Vector3 change;
 
     public Camera cam;
@@ -30,11 +28,6 @@ public class PlayerController : MonoBehaviour
         change.y = Input.GetAxisRaw("Vertical");
         // calling move function
         Move();
-    }
-
-    public float PlayerSpeed()
-    {
-        return moveSpeed;
     }
 
     void Move()

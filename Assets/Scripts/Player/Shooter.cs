@@ -39,8 +39,9 @@ public class Shooter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             // if player has anything but not 30 bullets then start reloading
-            if (ammoNum != 30)
+            if (ammoNum != 30 && !isReloading)
             {
+                isReloading = true;
                 ammoNum = 0;
                 StartCoroutine(Reload());
             }
