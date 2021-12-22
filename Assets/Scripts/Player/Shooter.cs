@@ -95,7 +95,7 @@ public class Shooter : MonoBehaviour
         // display current bullets
         reload.text = string.Format("Ammo: " + ammoNum + "/30");
 
-        isReloading = true;
+        isReloading = false;
     }
 
 }
