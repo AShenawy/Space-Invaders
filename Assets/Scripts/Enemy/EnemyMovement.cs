@@ -14,6 +14,6 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.GetComponent<Transform>().transform.right * speed;
+        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.GetComponent<Transform>().transform.right * speed;
     }
 }
