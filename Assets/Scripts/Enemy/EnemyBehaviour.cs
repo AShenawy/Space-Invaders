@@ -6,15 +6,6 @@ using UnityEngine.SceneManagement;
 // This script controls the behaviour of each single Alien enemy
 public class EnemyBehaviour : MonoBehaviour
 {
-    public AudioSource audio;
-    public AudioClip destroySFX;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -35,14 +26,14 @@ public class EnemyBehaviour : MonoBehaviour
         if (otherCollider.tag == "Player")
         {
             // if player collided set playerprefs for gameover scene
-            PlayerPrefs.SetString("loseMessage", "YOUR SHIP WAS DESTROYED");
+            PlayerPrefs.SetString("loseMessage", "YOUR PLANE WAS DESTROYED");
 
             // load gameover scene
             SceneManager.LoadScene("GameOver");
         }
 
-            // Check the tag on the other game object. If it's the projectile's tag,
-            //  destroy both this game object and the projectile
+        // Check the tag on the other game object. If it's the projectile's tag,
+        //  destroy both this game object and the projectile
         if (otherCollider.tag == "Projectile")
         {
             // play explosion sound

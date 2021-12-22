@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ExplosionSound : MonoBehaviour
 {
+    private AudioSource audioExplosion;
 
-    AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioExplosion = GetComponent<AudioSource>();
     }
 
     // create public function to play it in other script
     public void PlayExplosion()
     {
-        audio.Play();
+        audioExplosion.Play();
     }
     // Update is called once per frame
     void Update()

@@ -33,7 +33,5 @@ public class Parallax : MonoBehaviour
 
         // if we are not far from starting position + lenght then we add lenght from starting position
         else if (temp < starpos - lenght) starpos -= lenght;
-
-
     }
 }

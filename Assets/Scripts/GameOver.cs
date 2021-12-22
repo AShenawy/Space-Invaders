@@ -9,12 +9,14 @@ public class GameOver : MonoBehaviour
     public SpriteRenderer playerImage;
 
     public TextMeshProUGUI reason;
+    public TextMeshProUGUI score;
 
     // Start is called before the first frame update
     void Start()
     {
         //display playerpref 
         reason.text = string.Format(PlayerPrefs.GetString("loseMessage"));
+        score.text = string.Format("SCORE: " + PlayerPrefs.GetInt("scoreMessage"));   
     }
 
     // Update is called once per frame

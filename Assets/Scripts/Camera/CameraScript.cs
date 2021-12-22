@@ -8,7 +8,6 @@ public class CameraScript : MonoBehaviour
     private float timer;
     public Transform player;
     public Vector3 offset;
-
     void Update()
     {
         // change camera position according to player's with offset 
