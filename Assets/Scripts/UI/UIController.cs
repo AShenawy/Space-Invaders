@@ -74,6 +74,7 @@ public class UIController : MonoBehaviour
      */
     public void SetForNextLevel()
     {
+        // 27 is the number of enemies. 
         if ((totalDefeatedEnemy >= (27 * level)) && (timeLimit >= 0))
         {
             timeLimit = timePassed - timeStored;
